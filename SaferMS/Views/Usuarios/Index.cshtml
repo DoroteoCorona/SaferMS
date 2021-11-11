@@ -25,16 +25,7 @@
                 @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Idsexo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdPuesto)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Posición)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdDepartamento)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Privilegio)
@@ -43,13 +34,13 @@
                 @Html.DisplayNameFor(model => model.Contraseña)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUsuario1)
+                @Html.DisplayNameFor(model => model.IdDepartamentoNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUsuario2)
+                @Html.DisplayNameFor(model => model.IdPuestoNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdUsuarioNavigation)
+                @Html.DisplayNameFor(model => model.IdsexoNavigation)
             </th>
             <th></th>
         </tr>
@@ -70,16 +61,7 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idsexo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdPuesto)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Posición)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdDepartamento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Privilegio)
@@ -88,13 +70,13 @@
                 @Html.DisplayFor(modelItem => item.Contraseña)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuario1.NomPuesto)
+                @Html.DisplayFor(modelItem => item.IdDepartamentoNavigation.NomDepartamento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuario2.Genero)
+                @Html.DisplayFor(modelItem => item.IdPuestoNavigation.NomPuesto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdUsuarioNavigation.NomDepartamento)
+                @Html.DisplayFor(modelItem => item.IdsexoNavigation.Genero)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdUsuario">Edit</a> |

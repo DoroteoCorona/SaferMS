@@ -19,9 +19,8 @@ namespace SaferMS.Models.DB
         public string Privilegio { get; set; }
         public string Contraseña { get; set; }
 
-        public virtual Puesto IdUsuario1 { get; set; }
-        public virtual Sexo IdUsuario2 { get; set; }
-        public virtual Departamento IdUsuarioNavigation { get; set; }
-        public virtual RegistroObservacion RegistroObservacion { get; set; }
+        public virtual Departamento IdDepartamentoNavigation { get; set; }
+        public virtual Puesto IdPuestoNavigation { get; set; }
+        public virtual Sexo IdsexoNavigation { get; set; }
     }
 }

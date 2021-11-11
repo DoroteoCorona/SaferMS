@@ -31,7 +31,6 @@ namespace SaferMS.Models.DB
 
         public virtual Aspecto IdObservacion1 { get; set; }
         public virtual Comportamiento IdObservacion2 { get; set; }
-        public virtual Usuario IdObservacion3 { get; set; }
         public virtual Area IdObservacionNavigation { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace SaferMS.Models.DB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-GUUO8O4\\SQLEXPRESS; Database=Safer3; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server = DESKTOP-PMTQBSN\\SQLEXPRESS; Database=Safer3; Trusted_Connection=True;");
             }
         }
 
@@ -215,12 +215,6 @@ namespace SaferMS.Models.DB
                     .HasForeignKey<RegistroObservacion>(d => d.IdObservacion)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_registroObservacion_comportamiento");
-
-                entity.HasOne(d => d.IdObservacion3)
-                    .WithOne(p => p.RegistroObservacion)
-                    .HasForeignKey<RegistroObservacion>(d => d.IdObservacion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_registroObservacion_usuario");
             });
 
             modelBuilder.Entity<Sexo>(entity =>
@@ -243,9 +237,7 @@ namespace SaferMS.Models.DB
 
                 entity.ToTable("usuario");
 
-                entity.Property(e => e.IdUsuario)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idUsuario");
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
                 entity.Property(e => e.Apellidos)
                     .IsRequired()
@@ -285,23 +277,23 @@ namespace SaferMS.Models.DB
                     .HasMaxLength(50)
                     .HasColumnName("privilegio");
 
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithOne(p => p.Usuario)
-                    .HasForeignKey<Usuario>(d => d.IdUsuario)
+                entity.HasOne(d => d.IdDepartamentoNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.IdDepartamento)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_usuario_departamento");
+                    .HasConstraintName("Fk_Depa");
 
-                entity.HasOne(d => d.IdUsuario1)
-                    .WithOne(p => p.Usuario)
-                    .HasForeignKey<Usuario>(d => d.IdUsuario)
+                entity.HasOne(d => d.IdPuestoNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.IdPuesto)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_usuario_puesto");
+                    .HasConstraintName("FK_Puest");
 
-                entity.HasOne(d => d.IdUsuario2)
-                    .WithOne(p => p.Usuario)
-                    .HasForeignKey<Usuario>(d => d.IdUsuario)
+                entity.HasOne(d => d.IdsexoNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.Idsexo)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_usuario_sexo");
+                    .HasConstraintName("FK_sexo");
             });
 
             OnModelCreatingPartial(modelBuilder);

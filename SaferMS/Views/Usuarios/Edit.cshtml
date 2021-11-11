@@ -35,12 +35,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Idsexo" class="control-label"></label>
-                <input asp-for="Idsexo" class="form-control" />
+                <select asp-for="Idsexo" class="form-control" asp-items="ViewBag.Idsexo"></select>
                 <span asp-validation-for="Idsexo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdPuesto" class="control-label"></label>
-                <input asp-for="IdPuesto" class="form-control" />
+                <select asp-for="IdPuesto" class="form-control" asp-items="ViewBag.IdPuesto"></select>
                 <span asp-validation-for="IdPuesto" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdDepartamento" class="control-label"></label>
-                <input asp-for="IdDepartamento" class="form-control" />
+                <select asp-for="IdDepartamento" class="form-control" asp-items="ViewBag.IdDepartamento"></select>
                 <span asp-validation-for="IdDepartamento" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -21,7 +21,7 @@ namespace SaferMS.Controllers
         // GET: RegistroObservaciones
         public async Task<IActionResult> Index()
         {
-            var safer3Context = _context.RegistroObservacions.Include(r => r.IdObservacion1).Include(r => r.IdObservacion2).Include(r => r.IdObservacion3).Include(r => r.IdObservacionNavigation);
+            var safer3Context = _context.RegistroObservacions.Include(r => r.IdObservacion1).Include(r => r.IdObservacion2).Include(r => r.IdObservacionNavigation);
             return View(await safer3Context.ToListAsync());
         }
 
@@ -36,7 +36,6 @@ namespace SaferMS.Controllers
             var registroObservacion = await _context.RegistroObservacions
                 .Include(r => r.IdObservacion1)
                 .Include(r => r.IdObservacion2)
-                .Include(r => r.IdObservacion3)
                 .Include(r => r.IdObservacionNavigation)
                 .FirstOrDefaultAsync(m => m.IdObservacion == id);
             if (registroObservacion == null)
@@ -52,7 +51,6 @@ namespace SaferMS.Controllers
         {
             ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto");
             ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento");
-            ViewData["IdObservacion"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellidos");
             ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea");
             return View();
         }
@@ -72,7 +70,6 @@ namespace SaferMS.Controllers
             }
             ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdObservacion);
             ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellidos", registroObservacion.IdObservacion);
             ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdObservacion);
             return View(registroObservacion);
         }
@@ -92,7 +89,6 @@ namespace SaferMS.Controllers
             }
             ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdObservacion);
             ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellidos", registroObservacion.IdObservacion);
             ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdObservacion);
             return View(registroObservacion);
         }
@@ -131,7 +127,6 @@ namespace SaferMS.Controllers
             }
             ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdObservacion);
             ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Usuarios, "IdUsuario", "Apellidos", registroObservacion.IdObservacion);
             ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdObservacion);
             return View(registroObservacion);
         }
@@ -147,7 +142,6 @@ namespace SaferMS.Controllers
             var registroObservacion = await _context.RegistroObservacions
                 .Include(r => r.IdObservacion1)
                 .Include(r => r.IdObservacion2)
-                .Include(r => r.IdObservacion3)
                 .Include(r => r.IdObservacionNavigation)
                 .FirstOrDefaultAsync(m => m.IdObservacion == id);
             if (registroObservacion == null)

@@ -21,7 +21,7 @@ namespace SaferMS.Controllers
         // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            var safer3Context = _context.Usuarios.Include(u => u.IdUsuario1).Include(u => u.IdUsuario2).Include(u => u.IdUsuarioNavigation);
+            var safer3Context = _context.Usuarios.Include(u => u.IdDepartamentoNavigation).Include(u => u.IdPuestoNavigation).Include(u => u.IdsexoNavigation);
             return View(await safer3Context.ToListAsync());
         }
 
@@ -34,9 +34,9 @@ namespace SaferMS.Controllers
             }
 
             var usuario = await _context.Usuarios
-                .Include(u => u.IdUsuario1)
-                .Include(u => u.IdUsuario2)
-                .Include(u => u.IdUsuarioNavigation)
+                .Include(u => u.IdDepartamentoNavigation)
+                .Include(u => u.IdPuestoNavigation)
+                .Include(u => u.IdsexoNavigation)
                 .FirstOrDefaultAsync(m => m.IdUsuario == id);
             if (usuario == null)
             {
@@ -49,9 +49,9 @@ namespace SaferMS.Controllers
         // GET: Usuarios/Create
         public IActionResult Create()
         {
-            ViewData["IdUsuario"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto");
-            ViewData["IdUsuario"] = new SelectList(_context.Sexos, "IdSexo", "Genero");
-            ViewData["IdUsuario"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento");
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento");
+            ViewData["IdPuesto"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto");
+            ViewData["Idsexo"] = new SelectList(_context.Sexos, "IdSexo", "Genero");
             return View();
         }
 
@@ -68,9 +68,9 @@ namespace SaferMS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdUsuario"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto", usuario.IdUsuario);
-            ViewData["IdUsuario"] = new SelectList(_context.Sexos, "IdSexo", "Genero", usuario.IdUsuario);
-            ViewData["IdUsuario"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", usuario.IdUsuario);
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", usuario.IdDepartamento);
+            ViewData["IdPuesto"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto", usuario.IdPuesto);
+            ViewData["Idsexo"] = new SelectList(_context.Sexos, "IdSexo", "Genero", usuario.Idsexo);
             return View(usuario);
         }
 
@@ -87,9 +87,9 @@ namespace SaferMS.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdUsuario"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto", usuario.IdUsuario);
-            ViewData["IdUsuario"] = new SelectList(_context.Sexos, "IdSexo", "Genero", usuario.IdUsuario);
-            ViewData["IdUsuario"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", usuario.IdUsuario);
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", usuario.IdDepartamento);
+            ViewData["IdPuesto"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto", usuario.IdPuesto);
+            ViewData["Idsexo"] = new SelectList(_context.Sexos, "IdSexo", "Genero", usuario.Idsexo);
             return View(usuario);
         }
 
@@ -125,9 +125,9 @@ namespace SaferMS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdUsuario"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto", usuario.IdUsuario);
-            ViewData["IdUsuario"] = new SelectList(_context.Sexos, "IdSexo", "Genero", usuario.IdUsuario);
-            ViewData["IdUsuario"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", usuario.IdUsuario);
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", usuario.IdDepartamento);
+            ViewData["IdPuesto"] = new SelectList(_context.Puestos, "IdPuesto", "NomPuesto", usuario.IdPuesto);
+            ViewData["Idsexo"] = new SelectList(_context.Sexos, "IdSexo", "Genero", usuario.Idsexo);
             return View(usuario);
         }
 
@@ -140,9 +140,9 @@ namespace SaferMS.Controllers
             }
 
             var usuario = await _context.Usuarios
-                .Include(u => u.IdUsuario1)
-                .Include(u => u.IdUsuario2)
-                .Include(u => u.IdUsuarioNavigation)
+                .Include(u => u.IdDepartamentoNavigation)
+                .Include(u => u.IdPuestoNavigation)
+                .Include(u => u.IdsexoNavigation)
                 .FirstOrDefaultAsync(m => m.IdUsuario == id);
             if (usuario == null)
             {
