@@ -31,7 +31,7 @@ namespace SaferMS.Models.DB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server = DESKTOP-GUUO8O4\\SQLEXPRESS; Database=Safer3; Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-GUUO8O4\\SQLEXPRESS;Database=Safer3;Trusted_Connection=True;MultipleActiveResultSets=true");
             }
         }
 
@@ -115,36 +115,17 @@ namespace SaferMS.Models.DB
 
                 entity.ToTable("registroObservacion");
 
-                entity.Property(e => e.IdObservacion)
-                    .ValueGeneratedNever()
-                    .HasColumnName("idObservacion");
+                entity.Property(e => e.IdObservacion).HasColumnName("idObservacion");
 
-                entity.Property(e => e.AccionesRealizadas)
-                    .IsRequired()
-                    .HasColumnName("accionesRealizadas");
+                entity.Property(e => e.AccionesRealizadas).HasColumnName("accionesRealizadas");
 
-                entity.Property(e => e.ComentariosObservacion)
-                    .IsRequired()
-                    .HasColumnName("comentariosObservacion");
+                entity.Property(e => e.ComentariosObservacion).HasColumnName("comentariosObservacion");
 
                 entity.Property(e => e.Criticidad)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("criticidad");
 
-                entity.Property(e => e.DescripcionObservacion)
-                    .IsRequired()
-                    .HasColumnName("descripcionObservacion");
-
-                entity.Property(e => e.EvidenciaCierre)
-                    .IsRequired()
-                    .HasColumnType("image")
-                    .HasColumnName("evidenciaCierre");
-
-                entity.Property(e => e.EvidenciaObservacion)
-                    .IsRequired()
-                    .HasColumnType("image")
-                    .HasColumnName("evidenciaObservacion");
+                entity.Property(e => e.DescripcionObservacion).HasColumnName("descripcionObservacion");
 
                 entity.Property(e => e.FechaCompromiso)
                     .HasColumnType("date")
@@ -154,67 +135,55 @@ namespace SaferMS.Models.DB
                     .HasColumnType("datetime")
                     .HasColumnName("fechaCreacion");
 
-                entity.Property(e => e.FolioObservacion)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("folioObservacion");
-
                 entity.Property(e => e.IdArea).HasColumnName("idArea");
 
                 entity.Property(e => e.IdAspecto).HasColumnName("idAspecto");
 
                 entity.Property(e => e.IdComportamiento).HasColumnName("idComportamiento");
 
-                entity.Property(e => e.ObservacionA)
-                    .IsRequired()
-                    .HasMaxLength(50);
+                entity.Property(e => e.IdDepartamento).HasColumnName("idDepartamento");
+
+                entity.Property(e => e.ObservacionA).HasMaxLength(50);
 
                 entity.Property(e => e.PersonasRetroalimentadas).HasColumnName("personasRetroalimentadas");
 
-                entity.Property(e => e.PlanAccion)
-                    .IsRequired()
-                    .HasColumnName("planAccion");
+                entity.Property(e => e.PlanAccion).HasColumnName("planAccion");
 
                 entity.Property(e => e.PresupuestoRequerido)
                     .HasColumnType("money")
                     .HasColumnName("presupuestoRequerido");
 
-                entity.Property(e => e.ResponsableSeguimiento)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("responsableSeguimiento");
-
                 entity.Property(e => e.TiempoSolucion)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("tiempoSolucion");
 
                 entity.Property(e => e.TipoObservacion)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("tipoObservacion");
 
                 entity.Property(e => e.UsuarioCreacion)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("usuarioCreacion");
 
-                entity.HasOne(d => d.IdObservacionNavigation)
-                    .WithOne(p => p.RegistroObservacion)
-                    .HasForeignKey<RegistroObservacion>(d => d.IdObservacion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_registroObservacion_area");
+                entity.HasOne(d => d.IdAreaNavigation)
+                    .WithMany(p => p.RegistroObservacions)
+                    .HasForeignKey(d => d.IdArea)
+                    .HasConstraintName("FK_are");
 
-                entity.HasOne(d => d.IdObservacion1)
-                    .WithOne(p => p.RegistroObservacion)
-                    .HasForeignKey<RegistroObservacion>(d => d.IdObservacion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_registroObservacion_aspecto");
+                entity.HasOne(d => d.IdAspectoNavigation)
+                    .WithMany(p => p.RegistroObservacions)
+                    .HasForeignKey(d => d.IdAspecto)
+                    .HasConstraintName("FK_aspec");
 
-                entity.HasOne(d => d.IdObservacion2)
-                    .WithOne(p => p.RegistroObservacion)
-                    .HasForeignKey<RegistroObservacion>(d => d.IdObservacion)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_registroObservacion_comportamiento");
+                entity.HasOne(d => d.IdComportamientoNavigation)
+                    .WithMany(p => p.RegistroObservacions)
+                    .HasForeignKey(d => d.IdComportamiento)
+                    .HasConstraintName("FK_compor");
+
+                entity.HasOne(d => d.IdDepartamentoNavigation)
+                    .WithMany(p => p.RegistroObservacions)
+                    .HasForeignKey(d => d.IdDepartamento)
+                    .HasConstraintName("Fk_depart");
             });
 
             modelBuilder.Entity<Sexo>(entity =>

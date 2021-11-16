@@ -4,20 +4,15 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
-<h4>RegistroObservacion</h4>
+<h4>Registro de observación</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="IdObservacion" />
-            <div class="form-group">
-                <label asp-for="FolioObservacion" class="control-label"></label>
-                <input asp-for="FolioObservacion" class="form-control" />
-                <span asp-validation-for="FolioObservacion" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="FechaCreacion" class="control-label"></label>
                 <input asp-for="FechaCreacion" class="form-control" />
@@ -30,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdArea" class="control-label"></label>
-                <input asp-for="IdArea" class="form-control" />
+                <select asp-for="IdArea" class="form-control" asp-items="ViewBag.IdArea"></select>
                 <span asp-validation-for="IdArea" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -60,12 +55,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="IdAspecto" class="control-label"></label>
-                <input asp-for="IdAspecto" class="form-control" />
+                <select asp-for="IdAspecto" class="form-control" asp-items="ViewBag.IdAspecto"></select>
                 <span asp-validation-for="IdAspecto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="IdComportamiento" class="control-label"></label>
-                <input asp-for="IdComportamiento" class="form-control" />
+                <select asp-for="IdComportamiento" class="form-control" asp-items="ViewBag.IdComportamiento"></select>
                 <span asp-validation-for="IdComportamiento" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -74,14 +69,9 @@
                 <span asp-validation-for="Criticidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ResponsableSeguimiento" class="control-label"></label>
-                <input asp-for="ResponsableSeguimiento" class="form-control" />
-                <span asp-validation-for="ResponsableSeguimiento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EvidenciaObservacion" class="control-label"></label>
-                <input asp-for="EvidenciaObservacion" class="form-control" />
-                <span asp-validation-for="EvidenciaObservacion" class="text-danger"></span>
+                <label asp-for="IdDepartamento" class="control-label"></label>
+                <select asp-for="IdDepartamento" class="form-control" asp-items="ViewBag.IdDepartamento"></select>
+                <span asp-validation-for="IdDepartamento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PlanAccion" class="control-label"></label>
@@ -109,19 +99,14 @@
                 <span asp-validation-for="ComentariosObservacion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EvidenciaCierre" class="control-label"></label>
-                <input asp-for="EvidenciaCierre" class="form-control" />
-                <span asp-validation-for="EvidenciaCierre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar al resgistro de observaciones</a>
 </div>
 
 @section Scripts {

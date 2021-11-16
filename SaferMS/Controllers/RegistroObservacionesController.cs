@@ -21,7 +21,7 @@ namespace SaferMS.Controllers
         // GET: RegistroObservaciones
         public async Task<IActionResult> Index()
         {
-            var safer3Context = _context.RegistroObservacions.Include(r => r.IdObservacion1).Include(r => r.IdObservacion2).Include(r => r.IdObservacionNavigation);
+            var safer3Context = _context.RegistroObservacions.Include(r => r.IdAreaNavigation).Include(r => r.IdAspectoNavigation).Include(r => r.IdComportamientoNavigation).Include(r => r.IdDepartamentoNavigation);
             return View(await safer3Context.ToListAsync());
         }
 
@@ -34,9 +34,10 @@ namespace SaferMS.Controllers
             }
 
             var registroObservacion = await _context.RegistroObservacions
-                .Include(r => r.IdObservacion1)
-                .Include(r => r.IdObservacion2)
-                .Include(r => r.IdObservacionNavigation)
+                .Include(r => r.IdAreaNavigation)
+                .Include(r => r.IdAspectoNavigation)
+                .Include(r => r.IdComportamientoNavigation)
+                .Include(r => r.IdDepartamentoNavigation)
                 .FirstOrDefaultAsync(m => m.IdObservacion == id);
             if (registroObservacion == null)
             {
@@ -49,9 +50,10 @@ namespace SaferMS.Controllers
         // GET: RegistroObservaciones/Create
         public IActionResult Create()
         {
-            ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto");
-            ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento");
-            ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea");
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "NomArea");
+            ViewData["IdAspecto"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto");
+            ViewData["IdComportamiento"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento");
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento");
             return View();
         }
 
@@ -60,7 +62,8 @@ namespace SaferMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdObservacion,FolioObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,ResponsableSeguimiento,EvidenciaObservacion,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,ComentariosObservacion,EvidenciaCierre")] RegistroObservacion registroObservacion)
+        public async Task<IActionResult> Create([Bind("IdObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,IdDepartamento,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,ComentariosObservacion")] RegistroObservacion registroObservacion)
+            
         {
             if (ModelState.IsValid)
             {
@@ -68,9 +71,11 @@ namespace SaferMS.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdObservacion);
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdArea);
+            ViewData["IdAspecto"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdAspecto);
+            ViewData["IdComportamiento"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdComportamiento);
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", registroObservacion.IdDepartamento);
+            
             return View(registroObservacion);
         }
 
@@ -87,9 +92,10 @@ namespace SaferMS.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdObservacion);
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdArea);
+            ViewData["IdAspecto"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdAspecto);
+            ViewData["IdComportamiento"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdComportamiento);
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", registroObservacion.IdDepartamento);
             return View(registroObservacion);
         }
 
@@ -98,7 +104,7 @@ namespace SaferMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdObservacion,FolioObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,ResponsableSeguimiento,EvidenciaObservacion,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,ComentariosObservacion,EvidenciaCierre")] RegistroObservacion registroObservacion)
+        public async Task<IActionResult> Edit(int id, [Bind("IdObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,IdDepartamento,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,ComentariosObservacion")] RegistroObservacion registroObservacion)
         {
             if (id != registroObservacion.IdObservacion)
             {
@@ -125,9 +131,10 @@ namespace SaferMS.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdObservacion"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdObservacion);
-            ViewData["IdObservacion"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdObservacion);
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "NomArea", registroObservacion.IdArea);
+            ViewData["IdAspecto"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdAspecto);
+            ViewData["IdComportamiento"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdComportamiento);
+            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", registroObservacion.IdDepartamento);
             return View(registroObservacion);
         }
 
@@ -140,9 +147,10 @@ namespace SaferMS.Controllers
             }
 
             var registroObservacion = await _context.RegistroObservacions
-                .Include(r => r.IdObservacion1)
-                .Include(r => r.IdObservacion2)
-                .Include(r => r.IdObservacionNavigation)
+                .Include(r => r.IdAreaNavigation)
+                .Include(r => r.IdAspectoNavigation)
+                .Include(r => r.IdComportamientoNavigation)
+                .Include(r => r.IdDepartamentoNavigation)
                 .FirstOrDefaultAsync(m => m.IdObservacion == id);
             if (registroObservacion == null)
             {

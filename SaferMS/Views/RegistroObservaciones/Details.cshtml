@@ -4,18 +4,12 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
-    <h4>RegistroObservacion</h4>
+    <h4>Registro de observación</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FolioObservacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FolioObservacion)
-        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.FechaCreacion)
         </dt>
@@ -27,12 +21,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.UsuarioCreacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdArea)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdArea)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ObservacionA)
@@ -65,34 +53,10 @@
             @Html.DisplayFor(model => model.TipoObservacion)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdAspecto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdAspecto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdComportamiento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdComportamiento)
-        </dd>
-        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Criticidad)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Criticidad)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ResponsableSeguimiento)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ResponsableSeguimiento)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EvidenciaObservacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EvidenciaObservacion)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PlanAccion)
@@ -125,32 +89,32 @@
             @Html.DisplayFor(model => model.ComentariosObservacion)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EvidenciaCierre)
+            @Html.DisplayNameFor(model => model.IdAreaNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EvidenciaCierre)
+            @Html.DisplayFor(model => model.IdAreaNavigation.NomArea)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdObservacion1)
+            @Html.DisplayNameFor(model => model.IdAspectoNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdObservacion1.NomAspecto)
+            @Html.DisplayFor(model => model.IdAspectoNavigation.NomAspecto)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdObservacion2)
+            @Html.DisplayNameFor(model => model.IdComportamientoNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdObservacion2.NomComportamiento)
+            @Html.DisplayFor(model => model.IdComportamientoNavigation.NomComportamiento)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdObservacionNavigation)
+            @Html.DisplayNameFor(model => model.IdDepartamentoNavigation)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdObservacionNavigation.NomArea)
+            @Html.DisplayFor(model => model.IdDepartamentoNavigation.NomDepartamento)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.IdObservacion">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.IdObservacion">Editar</a> |
+    <a asp-action="Index">Regresar al registro de observaciones</a>
 </div>

@@ -4,25 +4,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Registro de observaciones</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nueva observación</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FolioObservacion)
+                @Html.DisplayNameFor(model => model.IdObservacion)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.FechaCreacion)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.UsuarioCreacion)
-            </th>
+            </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.IdArea)
+                @Html.DisplayNameFor(model => model.IdAreaNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ObservacionA)
@@ -40,19 +40,16 @@
                 @Html.DisplayNameFor(model => model.TipoObservacion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdAspecto)
+                @Html.DisplayNameFor(model => model.IdAspectoNavigation)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdComportamiento)
+                @Html.DisplayNameFor(model => model.IdComportamientoNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Criticidad)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ResponsableSeguimiento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EvidenciaObservacion)
+                @Html.DisplayNameFor(model => model.IdDepartamentoNavigation)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PlanAccion)
@@ -69,18 +66,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.ComentariosObservacion)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EvidenciaCierre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdObservacion1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdObservacion2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdObservacionNavigation)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -88,16 +73,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FolioObservacion)
+                @Html.DisplayFor(modelItem => item.IdObservacion)
             </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioCreacion)
+        </td>*@
             <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdArea)
+                @Html.DisplayFor(modelItem => item.IdAreaNavigation.NomArea)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ObservacionA)
@@ -115,19 +100,16 @@
                 @Html.DisplayFor(modelItem => item.TipoObservacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdAspecto)
+                @Html.DisplayFor(modelItem => item.IdAspectoNavigation.NomAspecto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdComportamiento)
+                @Html.DisplayFor(modelItem => item.IdComportamientoNavigation.NomComportamiento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Criticidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ResponsableSeguimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EvidenciaObservacion)
+                @Html.DisplayFor(modelItem => item.IdDepartamentoNavigation.NomDepartamento)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PlanAccion)
@@ -145,21 +127,9 @@
                 @Html.DisplayFor(modelItem => item.ComentariosObservacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EvidenciaCierre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdObservacion1.NomAspecto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdObservacion2.NomComportamiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdObservacionNavigation.NomArea)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdObservacion">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdObservacion">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdObservacion">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdObservacion">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdObservacion">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdObservacion">Eliminar</a>
             </td>
         </tr>
 }
