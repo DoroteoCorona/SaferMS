@@ -31,7 +31,7 @@ namespace SaferMS.Models.DB
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-GUUO8O4\\SQLEXPRESS;Database=Safer3;Trusted_Connection=True;MultipleActiveResultSets=true");
+                optionsBuilder.UseSqlServer("Data Source=SQL5097.site4now.net;Initial Catalog=db_a7b8ae_safer3;User Id=db_a7b8ae_safer3_admin;Password=Equipo#1");
             }
         }
 

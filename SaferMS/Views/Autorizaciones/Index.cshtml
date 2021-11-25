@@ -1,0 +1,137 @@
+﻿@model IEnumerable<SaferMS.Models.DB.RegistroObservacion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Registro de observaciones</h1>
+
+<p>
+    <a asp-action="Create">Crear nueva observación</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdObservacion)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UsuarioCreacion)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.IdAreaNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObservacionA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PersonasRetroalimentadas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescripcionObservacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccionesRealizadas)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoObservacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdAspectoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdComportamientoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Criticidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdDepartamentoNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanAccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TiempoSolucion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PresupuestoRequerido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCompromiso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ComentariosObservacion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdObservacion)
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioCreacion)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAreaNavigation.NomArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObservacionA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonasRetroalimentadas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionObservacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccionesRealizadas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoObservacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAspectoNavigation.NomAspecto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdComportamientoNavigation.NomComportamiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Criticidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDepartamentoNavigation.NomDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanAccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TiempoSolucion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PresupuestoRequerido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCompromiso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ComentariosObservacion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdObservacion">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdObservacion">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdObservacion">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
