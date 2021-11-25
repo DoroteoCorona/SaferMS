@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -8,8 +7,8 @@ namespace SaferMS.Models.DB
 {
     public partial class RegistroObservacion
     {
-        public int IdObservacion { get; set; }        
-        public DateTime? FechaCreacion  { get; set; }
+        public int IdObservacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
         public string UsuarioCreacion { get; set; }
         public int? IdArea { get; set; }
         public string ObservacionA { get; set; }
@@ -25,6 +24,7 @@ namespace SaferMS.Models.DB
         public string TiempoSolucion { get; set; }
         public decimal? PresupuestoRequerido { get; set; }
         public DateTime? FechaCompromiso { get; set; }
+        public byte[] EvidenciaObservacion { get; set; }
         public string ComentariosObservacion { get; set; }
 
         public virtual Area IdAreaNavigation { get; set; }

@@ -62,8 +62,7 @@ namespace SaferMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,IdDepartamento,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,ComentariosObservacion")] RegistroObservacion registroObservacion)
-            
+        public async Task<IActionResult> Create([Bind("IdObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,IdDepartamento,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,EvidenciaObservacion,ComentariosObservacion")] RegistroObservacion registroObservacion)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +74,6 @@ namespace SaferMS.Controllers
             ViewData["IdAspecto"] = new SelectList(_context.Aspectos, "IdAspecto", "NomAspecto", registroObservacion.IdAspecto);
             ViewData["IdComportamiento"] = new SelectList(_context.Comportamientos, "IdComportamiento", "NomComportamiento", registroObservacion.IdComportamiento);
             ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "NomDepartamento", registroObservacion.IdDepartamento);
-            
             return View(registroObservacion);
         }
 
@@ -104,7 +102,7 @@ namespace SaferMS.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,IdDepartamento,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,ComentariosObservacion")] RegistroObservacion registroObservacion)
+        public async Task<IActionResult> Edit(int id, [Bind("IdObservacion,FechaCreacion,UsuarioCreacion,IdArea,ObservacionA,PersonasRetroalimentadas,DescripcionObservacion,AccionesRealizadas,TipoObservacion,IdAspecto,IdComportamiento,Criticidad,IdDepartamento,PlanAccion,TiempoSolucion,PresupuestoRequerido,FechaCompromiso,EvidenciaObservacion,ComentariosObservacion")] RegistroObservacion registroObservacion)
         {
             if (id != registroObservacion.IdObservacion)
             {
