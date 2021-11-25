@@ -1,0 +1,121 @@
+﻿@model SaferMS.Models.DB.RegistroObservacion
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>RegistroObservacion</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+            <label asp-for="FechaCreacion" class="control-label"></label>
+            <input asp-for="FechaCreacion" class="form-control" />
+            <span asp-validation-for="FechaCreacion" class="text-danger"></span>
+        </div>*@
+            @*<div class="form-group">
+            <label asp-for="UsuarioCreacion" class="control-label"></label>
+            <input asp-for="UsuarioCreacion" class="form-control" />
+            <span asp-validation-for="UsuarioCreacion" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="IdArea" class="control-label">Área de observación</label>
+                <select asp-for="IdArea" class="form-control" asp-items="ViewBag.IdArea"></select>
+            </div>
+            <div class="form-group">
+                <label>Observación realizada a</label>
+                <select asp-for="ObservacionA" class="form-control">
+                    <option>Empleado</option>
+                    <option>Contratista</option>
+                    <option>Transportista</option>
+                    <option>Tercero</option>
+                    <option>Instalaciones</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="PersonasRetroalimentadas" class="control-label">Personas retroalimentadas</label>
+                <input asp-for="PersonasRetroalimentadas" class="form-control" placeholder="Coloca número" />
+                <span asp-validation-for="PersonasRetroalimentadas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DescripcionObservacion" class="control-label">Descricpción</label>
+                <input asp-for="DescripcionObservacion" class="form-control" placeholder="Describe lo que identificaste" />
+                <span asp-validation-for="DescripcionObservacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccionesRealizadas" class="control-label">Acciones y compromisos realizados</label>
+                <input asp-for="AccionesRealizadas" class="form-control" placeholder="Describe las acciones que realizaste" />
+                <span asp-validation-for="AccionesRealizadas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Tipo de observación</label>
+                <select asp-for="TipoObservacion" class="form-control">
+                    <option>Acción Segura</option>
+                    <option>Acción Insegura</option>
+                    <option>Condición Segura</option>
+                    <option>Condición Insegura</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdAspecto" class="control-label">Aspecto identificado</label>
+                <select asp-for="IdAspecto" class="form-control" asp-items="ViewBag.IdAspecto"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdComportamiento" class="control-label">Comportamiento identificado</label>
+                <select asp-for="IdComportamiento" class="form-control" asp-items="ViewBag.IdComportamiento"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Criticidad" class="control-label">Criticidad</label>
+                <select asp-for="Criticidad" class="form-control">
+                    <option>Alto</option>
+                    <option>Medio</option>
+                    <option>Bajo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdDepartamento" class="control-label">Departamento responsable</label>
+                <select asp-for="IdDepartamento" class="form-control" asp-items="ViewBag.IdDepartamento"></select>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="PlanAccion" class="control-label"></label>
+                <input asp-for="PlanAccion" class="form-control" />
+                <span asp-validation-for="PlanAccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TiempoSolucion" class="control-label"></label>
+                <input asp-for="TiempoSolucion" class="form-control" />
+                <span asp-validation-for="TiempoSolucion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PresupuestoRequerido" class="control-label"></label>
+                <input asp-for="PresupuestoRequerido" class="form-control" />
+                <span asp-validation-for="PresupuestoRequerido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaCompromiso" class="control-label"></label>
+                <input asp-for="FechaCompromiso" class="form-control" />
+                <span asp-validation-for="FechaCompromiso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ComentariosObservacion" class="control-label"></label>
+                <input asp-for="ComentariosObservacion" class="form-control" />
+                <span asp-validation-for="ComentariosObservacion" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar al registro de observaciones</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
